@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour
+public class RandomManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
