@@ -27,14 +27,21 @@ public class Shop_Manager : MonoBehaviour
     #region MappinDatapack
     private void UseDataPack()
     {
+        CheckUseData();
+        CheckMappingButton();
+    }
 
-        if (shopManager == null) return;
-
+    private void CheckUseData()
+    {
         foreach (var data in packCards)
         {
             MappingPackData(data.cardPackType);
         }
+    }
 
+    private void CheckMappingButton()
+    {
+        if (shopManager == null) return;
         foreach (var ui in mappingCardPackDatas)
         {
             ui.InitButton((cardPackType) => shopManager.Purchase(cardPackType));
@@ -43,7 +50,7 @@ public class Shop_Manager : MonoBehaviour
 
     private void MappingPackData(CardPackType cardPackType)
     {
-        
+
         var ui = mappingCardPackDatas.Find(p => p.cardPackType == cardPackType);
         var data = packCards.Find(d => d.cardPackType == cardPackType);
 
