@@ -7,12 +7,18 @@ public class UI_RandomManager : MonoBehaviour
     [SerializeField] private GameObject shop_Panel;
     [SerializeField] private GameObject Random_Panel;
 
+    [SerializeField] private GameObject back_Button;
+
     public enum Random_ActionType
     {
         None,
         backToShop
     }
 
+    private void Start()
+    {
+        back_Button.SetActive(false);
+    }
 
     #region Private
     private void OpenThis(GameObject target)
@@ -27,6 +33,8 @@ public class UI_RandomManager : MonoBehaviour
     #endregion
 
     #region Public
+    
+    public GameObject GetBack_Button => back_Button;
     public void BackToShop()
     {
         Random_Panel.SetActive(false);
