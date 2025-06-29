@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UI_ShopManager;
+using static MappingCard_Manager;
 
 public class ShopButtonManger : MonoBehaviour
 {
@@ -21,15 +22,13 @@ public class ShopButtonManger : MonoBehaviour
     {
         foreach (var config in shopButtonConfigs)
         {
-            if (config.button != null)
-            {
-                config.button.onClick.AddListener(() => ShopHandleAction(config.shopActionType));
-            }
-                
+            var capturedConfig = config;
+            config.button.onClick.AddListener(() =>
+                ShopHandleAction(capturedConfig.shopActionType));
         }
     }
 
-    private void ShopHandleAction(Shop_ActionType shopActionType)
+    private void ShopHandleAction(Shop_ActionType shopActionType,CardPackType cardPackType = CardPackType.None)
     {
         switch(shopActionType)
         {
@@ -37,7 +36,7 @@ public class ShopButtonManger : MonoBehaviour
                 shopManager.Collection();
                 break;
             case Shop_ActionType.Purchase:
-                shopManager.Purchase(); 
+                shopManager.Purchase(cardPackType); 
                 break;
             case Shop_ActionType.Confirm:
                 shopManager.Confirm(); 
@@ -56,5 +55,6 @@ public class ShopButtonManger : MonoBehaviour
 public class ShopButtonConfig
 {
     public Button button;
-    public Shop_ActionType shopActionType; 
+    public Shop_ActionType shopActionType;
+    public CardPackType cardPackType;
 }

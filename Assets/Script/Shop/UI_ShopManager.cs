@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static MappingCard_Manager;
 
 public class UI_ShopManager : MonoBehaviour
 {
     [Header("Main_Shop")]
     [SerializeField] private GameObject collection_Panel;
     [SerializeField] private GameObject purchasePopup;
+
+    
 
     [Header("shop_popup")]
     [SerializeField] private GameObject shopRandomCard_Panel;
@@ -19,8 +22,8 @@ public class UI_ShopManager : MonoBehaviour
         Purchase, 
         Confirm,
         Cancle
-
     }
+
 
     #region Private
     private void Openthis(GameObject target)
@@ -46,7 +49,7 @@ public class UI_ShopManager : MonoBehaviour
         Openthis(collection_Panel);
     }
 
-    public void Purchase()
+    public void Purchase(CardPackType type)
     {
         purchasePopup.SetActive(true);
     }
