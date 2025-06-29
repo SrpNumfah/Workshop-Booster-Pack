@@ -12,14 +12,10 @@ public class Shop_Manager : MonoBehaviour
     [SerializeField] private List<PackCardData> packCards;
     [SerializeField] private UI_ShopManager shopManager;
 
-    [Header("UI")]
-    [SerializeField] private TMP_Text stackText;
-
-
     private void Start()
     {
         UseDataPack();
-        StackCoin();
+      
     }
 
     #region Private
@@ -65,17 +61,7 @@ public class Shop_Manager : MonoBehaviour
 
     #endregion
 
-    #region Shop_UI
-    private void StackCoin()
-    {
-        stackText.text = "X  $1000";
-    }
-    private void UpdateStackCoin()
-    {
-
-    }
-
-    #endregion
+    
 
     #endregion
 }

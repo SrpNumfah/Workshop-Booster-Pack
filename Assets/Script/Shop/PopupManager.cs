@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,6 +58,12 @@ public class PopupManager : MonoBehaviour
 
     #region Public
     public int SelectedAmount => currentAmount;
+    
+    public void ResetToDefault()
+    {
+        currentAmount = minAmount;
+        UpdateNumber();
+    }
     #endregion
 
 }

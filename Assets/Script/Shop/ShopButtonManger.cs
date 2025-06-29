@@ -45,8 +45,8 @@ public class ShopButtonManger : MonoBehaviour
             case Shop_ActionType.Confirm:
                 shopManager.Confirm(); 
                 break;
-                case Shop_ActionType.Cancle: 
-                shopManager.Cancle();
+                case Shop_ActionType.Cancel: 
+                shopManager.Cancel();
                 break;
             default:
                 break;

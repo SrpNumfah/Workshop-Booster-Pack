@@ -9,6 +9,6 @@ public class PackCardData : ScriptableObject
     public Sprite coinImage;
     public Sprite itemImage;
     public string cardText;
-    public string coinText;
+    public int coinText;
     public CardPackType cardPackType;
 }

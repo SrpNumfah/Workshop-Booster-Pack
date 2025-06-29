@@ -25,7 +25,7 @@ public class UI_ShopManager : MonoBehaviour
         Collection,
         Purchase, 
         Confirm,
-        Cancle
+        Cancel
     }
 
 
@@ -69,13 +69,25 @@ public class UI_ShopManager : MonoBehaviour
     public void Confirm() 
     {
         var amount = popupManager.SelectedAmount;
-        Debug.Log(amount);
-        Openthis(shopRandomCard_Panel);
+        var totalcost = currentSelectedPack.coinText * amount;
+
+        if (CoinManager.instance.SpendCoin(totalcost))
+        {
+            Openthis(shopRandomCard_Panel);
+            Debug.Log(amount);
+        }
+        else
+        {
+            Debug.Log("Not enough coin");
+        }
+
     }
 
-    public void Cancle()
+    public void Cancel()
     {
+        popupManager.ResetToDefault();
         purchasePopup.SetActive(false);
+        CoinManager.instance.GetNoticeText.text = " "; 
     }
 
     #endregion
