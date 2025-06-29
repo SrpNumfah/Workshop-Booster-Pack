@@ -10,6 +10,7 @@ public class Shop_Manager : MonoBehaviour
     [Header("Mapping_Data_List")]
     [SerializeField] private List<MappingCardPackData> mappingCardPackDatas;
     [SerializeField] private List<PackCardData> packCards;
+    [SerializeField] private UI_ShopManager shopManager;
 
     [Header("UI")]
     [SerializeField] private TMP_Text stackText;
@@ -26,8 +27,9 @@ public class Shop_Manager : MonoBehaviour
     #region MappinDatapack
     private void UseDataPack()
     {
-        UI_ShopManager uI_ShopManager = GetComponent<UI_ShopManager>();
-        if (uI_ShopManager == null) return; 
+
+        if (shopManager == null) return;
+
         foreach (var data in packCards)
         {
             MappingPackData(data.cardPackType);
@@ -35,7 +37,7 @@ public class Shop_Manager : MonoBehaviour
 
         foreach (var ui in mappingCardPackDatas)
         {
-            ui.InitButton((type) => uI_ShopManager.Purchase(type));
+            ui.InitButton((cardPackType) => shopManager.Purchase(cardPackType));
         }
     }
 

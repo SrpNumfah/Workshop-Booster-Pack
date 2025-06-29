@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,9 +22,13 @@ public class ShopButtonManger : MonoBehaviour
     {
         foreach (var config in shopButtonConfigs)
         {
-            var capturedConfig = config;
-            config.button.onClick.AddListener(() =>
-                ShopHandleAction(capturedConfig.shopActionType));
+            var capturedConfig = config; 
+
+            if (capturedConfig.button != null)
+            {
+                capturedConfig.button.onClick.AddListener(() =>
+                    ShopHandleAction(capturedConfig.shopActionType, capturedConfig.cardPackType));
+            }
         }
     }
 

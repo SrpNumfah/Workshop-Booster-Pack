@@ -1523,6 +1523,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collection_Panel: {fileID: 1819252408}
   purchasePopup: {fileID: 1426667368}
+  packCardDatas:
+  - {fileID: 11400000, guid: 154fa3af204befb47a73a255c7700654, type: 2}
+  - {fileID: 11400000, guid: 9e33967af2e78d349a28ab046f2cf43d, type: 2}
   shopRandomCard_Panel: {fileID: 588939646}
 --- !u!114 &426450462
 MonoBehaviour:
@@ -1539,12 +1542,16 @@ MonoBehaviour:
   shopButtonConfigs:
   - button: {fileID: 698014807}
     shopActionType: 1
+    cardPackType: 0
   - button: {fileID: 429595779}
     shopActionType: 2
+    cardPackType: 1
   - button: {fileID: 1260488815}
     shopActionType: 3
+    cardPackType: 0
   - button: {fileID: 330460896}
     shopActionType: 4
+    cardPackType: 0
 --- !u!1 &429595777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2412,7 @@ MonoBehaviour:
   packCards:
   - {fileID: 11400000, guid: 154fa3af204befb47a73a255c7700654, type: 2}
   - {fileID: 11400000, guid: 9e33967af2e78d349a28ab046f2cf43d, type: 2}
+  shopManager: {fileID: 426450461}
   stackText: {fileID: 2063500601}
 --- !u!1 &588939646
 GameObject:

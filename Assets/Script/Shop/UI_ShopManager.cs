@@ -8,11 +8,14 @@ public class UI_ShopManager : MonoBehaviour
     [Header("Main_Shop")]
     [SerializeField] private GameObject collection_Panel;
     [SerializeField] private GameObject purchasePopup;
-
+    [SerializeField] private List<PackCardData> packCardDatas;
     
 
     [Header("shop_popup")]
     [SerializeField] private GameObject shopRandomCard_Panel;
+
+    private PackCardData currentSelectedPack;
+
 
 
     public enum Shop_ActionType
@@ -51,6 +54,14 @@ public class UI_ShopManager : MonoBehaviour
 
     public void Purchase(CardPackType type)
     {
+        var foundData = packCardDatas.Find(p => p.cardPackType == type);
+        if (foundData == null)
+        {
+            Debug.LogWarning("ไม่พบ PackCardData สำหรับ " + type);
+            return;
+        }
+
+        currentSelectedPack = foundData;
         purchasePopup.SetActive(true);
     }
 
