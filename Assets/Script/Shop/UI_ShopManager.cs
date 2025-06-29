@@ -9,6 +9,7 @@ public class UI_ShopManager : MonoBehaviour
     [SerializeField] private GameObject collection_Panel;
     [SerializeField] private GameObject purchasePopup;
     [SerializeField] private List<PackCardData> packCardDatas;
+    [SerializeField] private PopupManager popupManager;
     
 
     [Header("shop_popup")]
@@ -67,8 +68,9 @@ public class UI_ShopManager : MonoBehaviour
 
     public void Confirm() 
     {
+        var amount = popupManager.SelectedAmount;
+        Debug.Log(amount);
         Openthis(shopRandomCard_Panel);
-
     }
 
     public void Cancle()

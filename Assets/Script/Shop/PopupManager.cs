@@ -27,21 +27,20 @@ public class PopupManager : MonoBehaviour
         currentAmount = minAmount;
         UpdateNumber();
 
-        left_Button.onClick.AddListener(OnLeftSide);
-        right_Button.onClick.AddListener(OnRightSide);
+        left_Button.onClick.AddListener(Decrease);
+        right_Button.onClick.AddListener(Increase);
     }
 
-    private void OnLeftSide()
+    private void Decrease()
     {
-        if (currentAmount - step <= maxAmount)
+        if (currentAmount - step >= minAmount)
         {
             currentAmount -= step;
             UpdateNumber();
-            Debug.Log(currentAmount);
         }
     }
 
-    private void OnRightSide()
+    private void Increase()
     {
         if (currentAmount + step <= maxAmount)
         {
@@ -54,8 +53,10 @@ public class PopupManager : MonoBehaviour
     {
         number_text.text = currentAmount.ToString();
     }
-    
+    #endregion
 
+    #region Public
+    public int SelectedAmount => currentAmount;
     #endregion
 
 }
