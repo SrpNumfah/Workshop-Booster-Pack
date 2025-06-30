@@ -56,7 +56,6 @@ public class UI_ShopManager : MonoBehaviour
     {
         Openthis(collection_Panel);
         manager.ShowAllCards();
-
     }
 
     public void Purchase(CardPackType type)
@@ -80,6 +79,7 @@ public class UI_ShopManager : MonoBehaviour
         if (CoinManager.instance.SpendCoin(totalcost))
         {
             Openthis(shopRandomCard_Panel);
+
             Debug.Log(amount);
         }
         else
