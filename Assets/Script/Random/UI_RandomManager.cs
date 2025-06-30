@@ -8,6 +8,7 @@ public class UI_RandomManager : MonoBehaviour
     [SerializeField] private GameObject Random_Panel;
 
     [SerializeField] private GameObject back_Button;
+    [SerializeField] private RandomManager randomManager;
 
     public enum Random_ActionType
     {
@@ -37,6 +38,7 @@ public class UI_RandomManager : MonoBehaviour
     public GameObject GetBack_Button => back_Button;
     public void BackToShop()
     {
+        randomManager.GetCardData.Clear();
         Random_Panel.SetActive(false);
         OpenThis(shop_Panel);
     }
