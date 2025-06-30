@@ -120,4 +120,22 @@ public class RandomManager : MonoBehaviour
     }
 
     public List<CardData> GetCardData => cardData;
+    public void ResetRandomUI()
+    {
+        // ลบการ์ดที่ spawn แล้ว
+        foreach (var card in spawnedCards)
+        {
+            Destroy(card);
+        }
+        spawnedCards.Clear();
+
+        // ปิด layout
+        showCardLayout.gameObject.SetActive(false);
+
+        // รีเซ็ต pack
+        CardRandom.SetActive(true);
+
+        // ปิดปุ่มกลับ
+        ui_RandomManager.GetBack_Button.SetActive(false);
+    }
 }

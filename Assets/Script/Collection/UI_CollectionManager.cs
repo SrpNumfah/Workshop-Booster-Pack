@@ -38,10 +38,6 @@ public class UI_CollectionManager : MonoBehaviour
         }
     }
 
-   
-
-   
-
     private void ShowCardsByRarity(RarityType rarity)
     {
         ClearLayout();
@@ -114,9 +110,6 @@ public class UI_CollectionManager : MonoBehaviour
         }
 
     }
-
-
-
 
     #endregion
 }

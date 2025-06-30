@@ -14,22 +14,28 @@ public class CardDisplay : MonoBehaviour
 
     private CardData cardData;
     private bool isFlipped = false;
+    private bool canZoom = false;
 
     #region Public
     public void Setup(CardData data)
     {
         cardData = data;
         cardBack_Image.sprite = data.cardBackImage;
-        cardFront_Image.gameObject.SetActive(false); // ซ่อนหน้าการ์ดตอนเริ่ม
-        cardBack_Image.gameObject.SetActive(true);   // โชว์หลังการ์ดตอนเริ่ม
+
+        gameObject.SetActive(true);
+        cardFront_Image.gameObject.SetActive(false);
+        cardBack_Image.gameObject.SetActive(true);
+
         cardNameText.text = "";
         isFlipped = false;
-        transform.localRotation = Quaternion.Euler(0, 0, 0); // คว่ำไว้
+        //transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void FlipCard()
     {
-        if (isFlipped) return;
+
+        if (isFlipped) return; // กันไม่ให้พลิกซ้ำ
+
         isFlipped = true;
 
         // หมุนครึ่งแรก 0 → 90 องศา
@@ -42,7 +48,8 @@ public class CardDisplay : MonoBehaviour
             cardNameText.text = cardData.rarity.ToString();
 
             // หมุนต่ออีกครึ่ง 90 → 180 องศา
-            transform.DOLocalRotate(new Vector3(0, 180, 0), 0.3f);
+            transform.DOLocalRotate(new Vector3(0, 0, 0), 0.3f);
+
 
             // เพิ่มในคอลเลกชัน
             CardCollectionManager.Instance.AddCard(cardData);
@@ -56,7 +63,8 @@ public class CardDisplay : MonoBehaviour
     }
 
     public CardData GetCardData() => cardData;
-    public bool IsFlipped()  => isFlipped;
+    public bool IsFlipped() => isFlipped;
+    
     #endregion
 
 }

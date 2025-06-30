@@ -16,6 +16,9 @@ public class UI_ShopManager : MonoBehaviour
     [SerializeField] private GameObject shopRandomCard_Panel;
     [SerializeField] private UI_CollectionManager manager;
 
+
+
+
     private PackCardData currentSelectedPack;
 
 

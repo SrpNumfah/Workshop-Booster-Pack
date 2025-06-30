@@ -1,44 +1,96 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerClickHandler
+
+public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CardDisplay cardDisplay;
+
     private Vector3 originalScale;
+    private Vector3 originalPosition;
+    private Transform originalParent;
+
+    private GridLayoutGroup parentGrid;
+
     private bool isHolding = false;
+    private float holdTime = 0f;
+    private float holdThreshold = 0.3f;
+    private bool isZoomed = false;
 
     private void Awake()
     {
         originalScale = rectTransform.localScale;
+        Debug.Log("Original Scale: " + originalScale);
+    }
+
+    private void Update()
+    {
+        if (isHolding && cardDisplay.IsFlipped())
+        {
+            holdTime += Time.deltaTime;
+
+            if (!isZoomed && holdTime > holdThreshold)
+            {
+                isZoomed = true;
+                rectTransform.localScale = originalScale * 1.8f;
+
+                //  บันทึกพาเรนต์ และตำแหน่ง
+                originalParent = rectTransform.parent;
+                originalPosition = rectTransform.position;
+
+                //  ดึงและปิด GridLayoutGroup
+                parentGrid = originalParent.GetComponent<GridLayoutGroup>();
+                if (parentGrid != null)
+                    parentGrid.enabled = false;
+
+                //  ย้ายออกจาก layout
+                rectTransform.SetParent(originalParent.parent); // ย้ายออกชั้นนึง
+                rectTransform.SetAsLastSibling(); // อยู่บนสุด
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
         isHolding = true;
-        rectTransform.localScale = originalScale * 1.5f;
+        holdTime = 0f;
+        isZoomed = false;
 
+        Debug.Log("Pointer Down");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isZoomed)
+        {
+            // 1. คืนขนาด
+            rectTransform.localScale = originalScale;
+
+            // 2. คืนพาเรนต์ + ตำแหน่งเดิม
+            rectTransform.SetParent(originalParent);
+            rectTransform.position = originalPosition;
+
+            // 3. เปิด GridLayoutGroup กลับ
+            if (parentGrid != null)
+                parentGrid.enabled = true;
+        }
+        else
+        {
+            cardDisplay.FlipCard();
+        }
+
         isHolding = false;
-        rectTransform.localScale = originalScale;
+        isZoomed = false;
+       
     }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("Card Clicked");
-        cardDisplay.FlipCard();
-    }
-
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isHolding)
+        if (isZoomed)
         {
             rectTransform.position = eventData.position;
         }

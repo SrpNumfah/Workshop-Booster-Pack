@@ -38,7 +38,7 @@ public class UI_RandomManager : MonoBehaviour
     public GameObject GetBack_Button => back_Button;
     public void BackToShop()
     {
-        randomManager.GetCardData.Clear();
+        randomManager.ResetRandomUI();
         Random_Panel.SetActive(false);
         OpenThis(shop_Panel);
     }
