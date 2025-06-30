@@ -816,8 +816,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 250, y: 450}
-  m_Spacing: {x: 50, y: 0}
+  m_CellSize: {x: 150, y: 250}
+  m_Spacing: {x: 50, y: 70}
   m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!1 &283442263
@@ -1922,6 +1922,7 @@ MonoBehaviour:
   popupManager: {fileID: 587206214}
   shopRandomCard_Panel: {fileID: 588939646}
   manager: {fileID: 289692726}
+  randomManager: {fileID: 1588045119}
 --- !u!114 &426450462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,7 +2918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076294, y: -0.00017548}
+  m_AnchoredPosition: {x: 0, y: -0.00018310547}
   m_SizeDelta: {x: 102.72, y: 57.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588939648
@@ -3007,7 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 76
     m_Right: 0
     m_Top: 100
     m_Bottom: 0
@@ -3015,7 +3016,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 250, y: 450}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 39.47, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &629059369
@@ -7060,7 +7061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000068665}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 102.72, y: 57.7791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819252410

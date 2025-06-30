@@ -73,6 +73,7 @@ public class UI_CollectionManager : MonoBehaviour
 
         var cardDisplay = cardObj.GetComponent<CardDisplay>();
         cardDisplay.Setup(data);
+        cardDisplay.FlipCard(false);
         cardDisplay.FlipCard();
 
         cardDisplay.SetAmountText(count);

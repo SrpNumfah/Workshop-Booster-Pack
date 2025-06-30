@@ -28,10 +28,10 @@ public class CardDisplay : MonoBehaviour
 
         cardNameText.text = "";
         isFlipped = false;
-        //transform.localRotation = Quaternion.Euler(0, 0, 0);
+       
     }
 
-    public void FlipCard()
+    public void FlipCard(bool addToCollection = true)
     {
 
         if (isFlipped) return; // กันไม่ให้พลิกซ้ำ
@@ -52,7 +52,10 @@ public class CardDisplay : MonoBehaviour
 
 
             // เพิ่มในคอลเลกชัน
-            CardCollectionManager.Instance.AddCard(cardData);
+            if (addToCollection)
+            {
+                CardCollectionManager.Instance.AddCard(cardData);
+            }
         });
     }
 

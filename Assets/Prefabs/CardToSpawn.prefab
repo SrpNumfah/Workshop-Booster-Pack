@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 6203266068330437628}
   cardDisplay: {fileID: 8299131791269854208}
+  cardFront_Image: {fileID: 5852792736520146170}
 --- !u!1 &5516017660266148220
 GameObject:
   m_ObjectHideFlags: 0

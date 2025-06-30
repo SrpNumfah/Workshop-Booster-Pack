@@ -15,13 +15,9 @@ public class UI_ShopManager : MonoBehaviour
     [Header("shop_popup")]
     [SerializeField] private GameObject shopRandomCard_Panel;
     [SerializeField] private UI_CollectionManager manager;
-
-
-
+    [SerializeField] private RandomManager randomManager;
 
     private PackCardData currentSelectedPack;
-
-
 
     public enum Shop_ActionType
     {
@@ -74,11 +70,15 @@ public class UI_ShopManager : MonoBehaviour
     public void Confirm() 
     {
         var amount = popupManager.SelectedAmount;
+        randomManager.SetPackAmount(amount);
         var totalcost = currentSelectedPack.coinText * amount;
 
         if (CoinManager.instance.SpendCoin(totalcost))
         {
             Openthis(shopRandomCard_Panel);
+
+            randomManager.SetPackAmount(amount);
+           // StartCoroutine(randomManager.SpawnCards());
 
             Debug.Log(amount);
         }

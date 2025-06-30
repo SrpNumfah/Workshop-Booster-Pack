@@ -9,6 +9,7 @@ public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CardDisplay cardDisplay;
+    [SerializeField] private Image cardFront_Image;
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
@@ -33,7 +34,7 @@ public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             holdTime += Time.deltaTime;
 
-            if (!isZoomed && holdTime > holdThreshold)
+            if (!isZoomed && holdTime > holdThreshold && cardDisplay.IsFlipped() && cardFront_Image.gameObject.activeSelf)
             {
                 isZoomed = true;
                 rectTransform.localScale = originalScale * 1.8f;
@@ -48,7 +49,7 @@ public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                     parentGrid.enabled = false;
 
                 //  ย้ายออกจาก layout
-                rectTransform.SetParent(originalParent.parent); // ย้ายออกชั้นนึง
+                rectTransform.SetParent(originalParent.parent, true); // ย้ายออกชั้นนึง
                 rectTransform.SetAsLastSibling(); // อยู่บนสุด
             }
         }
@@ -67,14 +68,14 @@ public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         if (isZoomed)
         {
-            // 1. คืนขนาด
+            //  คืนขนาด
             rectTransform.localScale = originalScale;
 
-            // 2. คืนพาเรนต์ + ตำแหน่งเดิม
+            //  คืนพาเรนต์ + ตำแหน่งเดิม
             rectTransform.SetParent(originalParent);
             rectTransform.position = originalPosition;
 
-            // 3. เปิด GridLayoutGroup กลับ
+            //  เปิด GridLayoutGroup กลับ
             if (parentGrid != null)
                 parentGrid.enabled = true;
         }

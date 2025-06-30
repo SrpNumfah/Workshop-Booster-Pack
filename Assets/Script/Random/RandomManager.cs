@@ -22,8 +22,10 @@ public class RandomManager : MonoBehaviour
     [SerializeField] private Button card_Button;
 
     private List<GameObject> spawnedCards = new();
-    private int maxSpawn = 5;
     private CardDisplay cardDisplay;
+
+    private int packAmount = 1;
+    private int totalCards;
 
     private void Start()
     {
@@ -58,10 +60,12 @@ public class RandomManager : MonoBehaviour
         return cardData[Random.Range(0, cardData.Count)];
     }
 
-    IEnumerator SpawnCards()
+    public IEnumerator SpawnCards()
     {
+        totalCards = packAmount * 5;
+
         float spacingY = 500f;
-        for (int i = 0; i < maxSpawn; i++)
+        for (int i = 0; i < totalCards; i++)
         {
 
             Vector3 offset = new Vector3(0f, i * spacingY, 0f); // ระยะห่าง spawn ไพ่
@@ -102,7 +106,7 @@ public class RandomManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(totalCards * 1f);
         showCardLayout.gameObject.SetActive(true);
         card.transform.SetParent(showCardLayout, false);
         card.transform.localScale = Vector3.one;
@@ -114,7 +118,7 @@ public class RandomManager : MonoBehaviour
 
     IEnumerator ArrangeCards()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(totalCards * 1f);
         ui_RandomManager.GetBack_Button.SetActive(true);
 
     }
@@ -137,5 +141,10 @@ public class RandomManager : MonoBehaviour
 
         // ปิดปุ่มกลับ
         ui_RandomManager.GetBack_Button.SetActive(false);
+    }
+
+    public void SetPackAmount(int amount)
+    {
+        packAmount = Mathf.Clamp(amount, 1, 10);
     }
 }
