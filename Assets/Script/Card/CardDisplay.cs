@@ -10,6 +10,7 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private Image cardBack_Image;
     [SerializeField] private Image cardFront_Image;
     [SerializeField] private TMP_Text cardNameText;
+    [SerializeField] private TMP_Text cardAmountText;
 
     private CardData cardData;
     private bool isFlipped = false;
@@ -48,7 +49,14 @@ public class CardDisplay : MonoBehaviour
         });
     }
 
+    public void SetAmountText(int count)
+    {
+        if (cardAmountText != null)
+            cardAmountText.text = $"x{count}";
+    }
+
     public CardData GetCardData() => cardData;
+    public bool IsFlipped()  => isFlipped;
     #endregion
 
 }

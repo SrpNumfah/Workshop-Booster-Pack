@@ -14,6 +14,7 @@ public class UI_ShopManager : MonoBehaviour
 
     [Header("shop_popup")]
     [SerializeField] private GameObject shopRandomCard_Panel;
+    [SerializeField] private UI_CollectionManager manager;
 
     private PackCardData currentSelectedPack;
 
@@ -51,6 +52,8 @@ public class UI_ShopManager : MonoBehaviour
     public void Collection()
     {
         Openthis(collection_Panel);
+        manager.ShowAllCards();
+
     }
 
     public void Purchase(CardPackType type)

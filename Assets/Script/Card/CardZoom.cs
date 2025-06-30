@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerClickHandler 
-{ 
+public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerClickHandler
+{
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CardDisplay cardDisplay;
     private Vector3 originalScale;
@@ -17,8 +17,10 @@ public class CardZoom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+
         isHolding = true;
         rectTransform.localScale = originalScale * 1.5f;
+
     }
 
     public void OnPointerUp(PointerEventData eventData)

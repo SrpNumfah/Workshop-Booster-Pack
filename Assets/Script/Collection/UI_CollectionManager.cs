@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class UI_CollectionManager : MonoBehaviour
 
     private void Start()
     {
+        rarityFilterDropdown.onValueChanged.RemoveAllListeners();
         rarityFilterDropdown.onValueChanged.AddListener(OnFilterChanged);
         ShowAllCards();
     }
@@ -36,23 +38,9 @@ public class UI_CollectionManager : MonoBehaviour
         }
     }
 
-    private void OnFilterChanged(int index)
-    {
-        if (index == 0) // All
-            ShowAllCards();
-        else
-            ShowCardsByRarity((RarityType)(index - 1)); // Offset by 1
-    }
+   
 
-    private void ShowAllCards()
-    {
-        ClearLayout();
-        foreach (var entry in CardCollectionManager.Instance.GetCollection().Values)
-        {
-            CreateCardUI(entry.data, entry.count);
-        }
-
-    }
+   
 
     private void ShowCardsByRarity(RarityType rarity)
     {
@@ -80,19 +68,18 @@ public class UI_CollectionManager : MonoBehaviour
     {
         if (cardLayout == null)
         {
-            Debug.LogError("💥 cardLayout is NULL!");
+            Debug.LogError("cardLayout is NULL!");
             return;
         }
 
         GameObject cardObj = Instantiate(cardPrefab, cardLayout);
-        Debug.Log($"✅ Created card: {data.rarity.ToString()} x{count}");
+        Debug.Log($"Created card: {data.rarity.ToString()} x{count}");
 
         var cardDisplay = cardObj.GetComponent<CardDisplay>();
         cardDisplay.Setup(data);
+        cardDisplay.FlipCard();
 
-        var countText = cardObj.GetComponentInChildren<TMPro.TMP_Text>();
-        if (countText != null)
-            countText.text = $"x{count}";
+        cardDisplay.SetAmountText(count);
     }
     #endregion
 
@@ -101,6 +88,35 @@ public class UI_CollectionManager : MonoBehaviour
     {
         collection_Panel.SetActive(false);
         OpenThis(shop_Panel);
+
     }
+
+    public void OnFilterChanged(int index)
+    {
+        Debug.Log($"Dropdown changed to index: {index}");
+
+        if (index == 0) // All
+            ShowAllCards();
+        else
+            ShowCardsByRarity((RarityType)(index - 1)); // Offset by 1
+    }
+
+    public void ShowAllCards()
+    {
+        ClearLayout();
+        var allCards = CardCollectionManager.Instance.GetCollection();
+
+        Debug.Log($"All Collection Count: {allCards.Count}");
+
+        foreach (var entry in CardCollectionManager.Instance.GetCollection().Values)
+        {
+            CreateCardUI(entry.data, entry.count);
+        }
+
+    }
+
+
+
+
     #endregion
 }
