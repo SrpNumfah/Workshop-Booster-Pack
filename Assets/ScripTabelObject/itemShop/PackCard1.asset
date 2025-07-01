@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01267bd76c39f3b45b9671ab8c566c6e, type: 3}
   m_Name: PackCard1
   m_EditorClassIdentifier: 
-  coinImage: {fileID: -3338749442709606003, guid: 93978dcbff65c754c82f146ed36c1c45, type: 3}
-  itemImage: {fileID: 4727633781103762509, guid: 45ab094653c66ba40a2ca337adf32ff4, type: 3}
+  coinImage: {fileID: 21300000, guid: cf88c4cfc535ad349a15dc277ac1c6ed, type: 3}
+  itemImage: {fileID: 21300000, guid: c7bf45f0ef95bed4491c5809fc6bf484, type: 3}
   cardText: SERIES 1
   coinText: 500
   cardPackType: 1
