@@ -13,7 +13,7 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private Button right_Button;
 
     private int minAmount = 1;
-    private int maxAmount = 10;
+    private int maxAmount = 5;
     private int step = 1;
     private int currentAmount;
 

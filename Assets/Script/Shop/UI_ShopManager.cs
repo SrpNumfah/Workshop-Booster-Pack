@@ -78,14 +78,14 @@ public class UI_ShopManager : MonoBehaviour
             Openthis(shopRandomCard_Panel);
 
             randomManager.SetPackAmount(amount);
-           // StartCoroutine(randomManager.SpawnCards());
-
             Debug.Log(amount);
         }
         else
         {
             Debug.Log("Not enough coin");
         }
+
+        popupManager.ResetToDefault();
 
     }
 
